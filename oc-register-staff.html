@@ -7,12 +7,13 @@
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-radio-group/paper-radio-group.html">
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../iron-label/iron-label.html">
 
 <!--
 `oc-register-staff`
 Element to facilitate the registration of staff on the Ordercloud platform
 
-@demo demo/index.html 
+@demo demo/index.html
 -->
 
 <dom-module id="oc-register-staff">
@@ -21,8 +22,30 @@ Element to facilitate the registration of staff on the Ordercloud platform
       :host {
         display: block;
       }
+
+      paper-button {
+        background-color: var(--primary-color);
+        color: #fff;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      paper-checkbox {
+        display: block;
+        margin-bottom: 5px;
+      }
+
     </style>
-    <h2>Hello [[prop1]]</h2>
+
+    <iron-label>
+      <span>Groups</span>
+
+      <template is="dom-repeat" items="[[staffGroups]]">
+        <paper-checkbox value="[[item.id]]">[[item.name]]</paper-checkbox>
+      </template>
+    </iron-label>
+    <gold-email-input required label="Email Address" always-float-label auto-validate value="[[data.email]]"></gold-email-input>
+
   </template>
 
   <script>
@@ -31,9 +54,10 @@ Element to facilitate the registration of staff on the Ordercloud platform
       is: 'oc-register-staff',
 
       properties: {
-        prop1: {
-          type: String,
-          value: 'oc-register-staff',
+        staffGroups : Array,
+        data: {
+          type: Object,
+          value: function(){ return {} }
         },
       },
 
