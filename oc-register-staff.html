@@ -17,206 +17,204 @@ Element to facilitate the registration of staff on the Ordercloud platform
 -->
 
 <dom-module id="oc-register-staff">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
 
-      paper-button {
-        background-color: var(--primary-color);
-        color: #fff;
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
+            paper-button {
+                background-color: var(--primary-color);
+                color: #fff;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
 
-      paper-radio-button,
-      iron-label,
-      paper-radio-group,
-      paper-checkbox {
-        display: block;
-      }
+            paper-radio-button,
+            iron-label,
+            paper-radio-group,
+            paper-checkbox {
+                display: block;
+            }
 
-      paper-checkbox {
-        margin-bottom: 5px;
-      }
+            paper-checkbox {
+                margin-bottom: 5px;
+            }
 
-      paper-radio-button + paper-radio-button {
-        padding-top: 0 !important;
-      }
+            paper-radio-button + paper-radio-button {
+                padding-top: 0 !important;
+            }
 
-      .error-input {
-        color: #dd2c00;
-      }
+            .error-input {
+                color: #dd2c00;
+            }
 
-    </style>
+        </style>
 
-    <iron-label>
-      <span>Groups</span>
-      <template is="dom-repeat" items="[[staffGroups]]" iron-label-target>
-        <paper-checkbox value="[[item.id]]" on-tap="_selectGroup">[[item.name]]</paper-checkbox>
-      </template>
-      <small class="error-input" hidden$="[[_groupIdValidation]]">Please select a staff type</small>
+        <iron-label>
+            <span>Groups</span>
+            <template is="dom-repeat" items="[[staffGroups]]" iron-label-target>
+                <paper-checkbox value="[[item.id]]" on-tap="_selectGroup">[[item.name]]</paper-checkbox>
+            </template>
+            <small class="error-input" hidden$="[[_groupIdValidation]]">Please select a staff type</small>
 
-    </iron-label>
+        </iron-label>
 
-    <gold-email-input
-            id="email"
-            label="Email Address"
-            value="{{_email}}"
-            always-float-label
-            auto-validate
-            required
-            error-message="Please enter a valid email address"
-    ></gold-email-input>
+        <gold-email-input
+                id="email"
+                label="Email Address"
+                value="{{_email}}"
+                always-float-label
+                auto-validate
+                required
+                error-message="Please enter a valid email address"
+        ></gold-email-input>
 
-    <paper-input
-            id="firstName"
-            label="First Name"
-            value="{{_firstName}}"
-            always-float-label
-            auto-validate
-            required
-            error-message="Please enter a first name"
-    ></paper-input>
+        <paper-input
+                id="firstName"
+                label="First Name"
+                value="{{_firstName}}"
+                always-float-label
+                auto-validate
+                required
+                error-message="Please enter a first name"
+        ></paper-input>
 
-    <paper-input
-            id="lastName"
-            label="Last Name"
-            value="{{_lastName}}"
-            always-float-label
-            auto-validate
-            required
-            error-message="Please enter a last name"
-    ></paper-input>
+        <paper-input
+                id="lastName"
+                label="Last Name"
+                value="{{_lastName}}"
+                always-float-label
+                auto-validate
+                required
+                error-message="Please enter a last name"
+        ></paper-input>
 
-    <paper-input
-            label="Nickname"
-            value="{{_nickName}}"
-            always-float-label>
+        <paper-input
+                label="Nickname"
+                value="{{_nickName}}"
+                always-float-label>
 
-    </paper-input>
+        </paper-input>
 
-    <gold-phone-input
-            id="cellNumber"
-            label="Cellphone Number"
-            value="{{_cellNumber}}"
-            country-code="27"
-            always-float-label
-            auto-validate
-            required
-            error-message="Please enter a valid phone number"
-    ></gold-phone-input>
+        <gold-phone-input
+                id="cellNumber"
+                label="Cellphone Number"
+                value="{{_cellNumber}}"
+                country-code="27"
+                always-float-label
+                auto-validate
+                required
+                error-message="Please enter a valid phone number"
+        ></gold-phone-input>
 
-    <iron-label>
-      <span>Gender</span>
-      <paper-radio-group id="gender" selected="{{_gender}}" iron-label-target>
-        <paper-radio-button name="male">Male</paper-radio-button>
-        <paper-radio-button name="female">Female</paper-radio-button>
-      </paper-radio-group>
-      <small class="error-input" hidden$="[[_genderValidation]]">Please select a gender</small>
-    </iron-label>
+        <iron-label>
+            <span>Gender</span>
+            <paper-radio-group id="gender" selected="{{_gender}}" iron-label-target>
+                <paper-radio-button name="male">Male</paper-radio-button>
+                <paper-radio-button name="female">Female</paper-radio-button>
+            </paper-radio-group>
+            <small class="error-input" hidden$="[[_genderValidation]]">Please select a gender</small>
+        </iron-label>
 
-    <paper-button raised on-tap="_createAccount">Create Account</paper-button>
+        <paper-button raised on-tap="_createAccount">Create Account</paper-button>
 
-  </template>
+    </template>
 
-  <script>
-    Polymer({
+    <script>
+        Polymer({
 
-      is: 'oc-register-staff',
+            is: 'oc-register-staff',
 
-      properties: {
-        staffGroups : Array,
+            properties: {
+                staffGroups : Array,
 
-        _email: String,
-        _firstName: String,
-        _lastName: String,
-        _nickName: String,
-        _cellNumber: String,
-        _gender: String,
-        _groupIds: {
-          type: Array,
-          value: function(){
-            return [];
-          }
-        },
-        _genderValidation: {
-          type: Boolean,
-          value: function(){ return true}
-        },
-        _groupIdValidation: {
-          type: Boolean,
-          value: function(){ return true}
-        },
+                _email: String,
+                _firstName: String,
+                _lastName: String,
+                _nickName: String,
+                _cellNumber: String,
+                _gender: String,
+                _groupIds: {
+                    type: Array,
+                    value: function(){
+                        return [];
+                    }
+                },
+                _genderValidation: {
+                    type: Boolean,
+                    value: function(){ return true}
+                },
+                _groupIdValidation: {
+                    type: Boolean,
+                    value: function(){ return true}
+                },
 
-      },
+            },
 
-      observers: [
-        "_selectGender(_gender)"
-      ],
+            observers: [
+                "_selectGender(_gender)"
+            ],
 
-      _selectGroup : function(e){
-        var _selectedElementValue = Polymer.dom(e).localTarget.value,
-                _itemIdx = this._groupIds.indexOf(_selectedElementValue);
+            _selectGroup : function(e){
+                var _selectedElementValue = Polymer.dom(e).localTarget.value,
+                        _itemIdx = this._groupIds.indexOf(_selectedElementValue);
 
-        if(_itemIdx < 0) {
-          this.push('_groupIds', _selectedElementValue);
-        } else {
-          this.splice('_groupIds', _itemIdx, 1);
-        }
+                if(_itemIdx < 0) {
+                    this.push('_groupIds', _selectedElementValue);
+                } else {
+                    this.splice('_groupIds', _itemIdx, 1);
+                }
 
-        this._groupIdValidation = !!this._groupIds.length;
+                this._groupIdValidation = !!this._groupIds.length;
 
-      },
+            },
 
-      _createAccount : function(){
+            _createAccount : function(){
 
-        if(this._validate()){
-          var params = {
-            mobileNumberCountry: '+27',
-            firstName : this._firstName,
-            surname : this._lastName,
-            email: this._email,
-            nickName: this.nickname || "",
-            cellphoneNumber : this._cellNumber,
-            sex : this._gender,
-            groupIds: this._groupIds,
-            sendWelcomeMessage : false
-          };
+                if(this._validate()){
+                    var params = {
+                        mobileNumberCountry: '+27',
+                        firstName : this._firstName,
+                        surname : this._lastName,
+                        email: this._email,
+                        nickName: this.nickname || "",
+                        cellphoneNumber : this._cellNumber,
+                        sex : this._gender,
+                        groupIds: this._groupIds,
+                        sendWelcomeMessage : false
+                    };
 
-          console.log(params);
-          this.fire('staff-register', params);
-        }
+                    this.fire('staff-register', params);
+                }
 
-      },
+            },
 
-      _validate : function() {
-        var email = this.$.email.validate(),
-                firstName = this.$.firstName.validate(),
-                lastName =  this.$.lastName.validate(),
-                cellNumber =  this.$.cellNumber.validate(),
-                groupIds = !!this._groupIds.length;
-        gender = !!this._gender;
+            _validate : function() {
+                var email = this.$.email.validate(),
+                        firstName = this.$.firstName.validate(),
+                        lastName =  this.$.lastName.validate(),
+                        cellNumber =  this.$.cellNumber.validate(),
+                        groupIds = !!this._groupIds.length;
+                gender = !!this._gender;
 
-        this._groupIdValidation = groupIds;
-        this._genderValidation = gender;
+                this._groupIdValidation = groupIds;
+                this._genderValidation = gender;
 
-        return (
-                email &&
-                firstName &&
-                lastName &&
-                cellNumber &&
-                groupIds &&
-                gender
-        )
-      },
+                return (
+                        email &&
+                        firstName &&
+                        lastName &&
+                        cellNumber &&
+                        groupIds &&
+                        gender
+                )
+            },
 
-      _selectGender : function(){
-        console.log(this._gender);
-        this._genderValidation = !!this._gender;
-      }
+            _selectGender : function(){
+                this._genderValidation = !!this._gender;
+            }
 
-    });
-  </script>
+        });
+    </script>
 </dom-module>
