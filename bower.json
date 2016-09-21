@@ -11,7 +11,9 @@
     "paper-input": "PolymerElements/paper-input#^1.0.0",
     "paper-radio-group": "PolymerElements/paper-radio-group#^1.0.0",
     "paper-radio-button": "PolymerElements/paper-radio-button#^1.2.1",
-    "iron-label": "PolymerElements/iron-label#^1.0.2"
+    "iron-label": "PolymerElements/iron-label#^1.0.2",
+    "oc-invitations-api": "git://github.com/oc-elements/oc-invitations-api#1.x",
+    "iron-location": "PolymerElements/iron-location#^0.8.8"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
