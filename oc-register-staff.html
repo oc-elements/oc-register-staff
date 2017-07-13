@@ -117,14 +117,16 @@ Element to facilitate the registration of staff on the Ordercloud platform
         <iron-label>
             <span>Gender</span>
             <paper-radio-group id="gender" selected="{{_gender}}" iron-label-target>
-                <paper-radio-button name="male">Male</paper-radio-button>
-                <paper-radio-button name="female">Female</paper-radio-button>
+                <paper-radio-button name="M">Male</paper-radio-button>
+                <paper-radio-button name="F">Female</paper-radio-button>
             </paper-radio-group>
             <small class="error-input" hidden$="[[_genderValidation]]">Please select a gender</small>
         </iron-label>
 
         <paper-button raised on-tap="_createAccount">Create Account</paper-button>
-
+		
+		<iron-ajax id="registerUser"></iron-ajax>
+	
     </template>
 
     <script>
@@ -220,7 +222,7 @@ Element to facilitate the registration of staff on the Ordercloud platform
                         sendWelcomeMessage : false
                     };
 
-                    this.fire('staff-register', params);
+                   this.fire('staff-register', params);
                 }
 
             },
@@ -230,10 +232,10 @@ Element to facilitate the registration of staff on the Ordercloud platform
                         firstName = this.$.firstName.validate(),
                         lastName =  this.$.lastName.validate(),
                         cellNumber =  this.$.cellNumber.validate(),
-                        groupIds = !!this._groupIds.length;
+                        //groupIds = !!this._groupIds.length;
                 gender = !!this._gender;
 
-                this._groupIdValidation = groupIds;
+           //     this._groupIdValidation = groupIds;
                 this._genderValidation = gender;
 
                 return (
@@ -241,7 +243,7 @@ Element to facilitate the registration of staff on the Ordercloud platform
                         firstName &&
                         lastName &&
                         cellNumber &&
-                        groupIds &&
+                        //groupIds &&
                         gender
                 )
             },
